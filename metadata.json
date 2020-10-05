@@ -4,9 +4,16 @@
   "author": "Lars Bahner",
   "summary": "Handle (oddjob) mkhomedir for pam",
   "license": "GPL-3.0-or-later",
-  "source": "",
+  "source": "https://github.com/bahner/puppet-mkhomedir.git",
+  "project_page": "https://github.com/bahner/puppet-mkhomedir",
+  "issues_url": "https://github.com/bahner/puppet-mkhomedir/issues",
   "dependencies": [
-
+    {
+      "name": "yguenane/authconfig"
+    },
+    {
+      "name": "herculesteam/augeasproviders_pam"
+    }
   ],
   "operatingsystem_support": [
     {
