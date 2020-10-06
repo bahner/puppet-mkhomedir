@@ -24,7 +24,7 @@ class mkhomedir::debian {
       service   => mkhomedir::pam_service_name,
       type      => 'session',
       control   => 'optional',
-      module    => $mkdhomedir::pam_module_name,
+      module    => $mkhomedir::pam_module_name,
       arguments => $mkhomedir::module_arguments,
     ;
   }
