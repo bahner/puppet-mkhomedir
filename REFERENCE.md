@@ -43,7 +43,7 @@ Default value: ``true``
 
 ##### `package_ensure`
 
-Data type: `Boolean`
+Data type: `String`
 
 Whether or not to install the oddjob-mkhomedir package,
 or to remove or purge it. This should prolly be correlated
