@@ -49,8 +49,8 @@ class mkhomedir (
   }
 
   case $facts['os']['family'] {
-    'RedHat': { include mkhomedir::redhat.pp }
-    default: { include mkhomedir::debian.pp }
+    'RedHat': { include mkhomedir::redhat }
+    default: { include mkhomedir::debian }
   }
 
 }
