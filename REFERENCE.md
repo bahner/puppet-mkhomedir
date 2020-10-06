@@ -6,27 +6,20 @@
 
 ### Classes
 
+#### Public Classes
+
 * [`mkhomedir`](#mkhomedir): Install and enable pam_oddjob_mkhomedir
-* [`mkhomedir::debian`](#mkhomedirdebian): Install and configures mkhomedir or vice versa
-* [`mkhomedir::params`](#mkhomedirparams): Default settings for mkhomedir
-* [`mkhomedir::redhat`](#mkhomedirredhat): Install and configures mkhomedir or vice versa
+
+#### Private Classes
+
+* `mkhomedir::debian`: Install and configures mkhomedir or vice versa
+* `mkhomedir::redhat`: Install and configures mkhomedir or vice versa
 
 ## Classes
 
 ### `mkhomedir`
 
 A description of what this class does
-
-$pam_service_name::
-The name of the pam.d/FILE to modify
-Debian only.
-
-$pam_module_args::
-Arguments to pass to the module, eg. umask=0007 or umask=0077
-Debian only
-
-$enable::
-Wheter to enable or disable the oddjob-mkhomedir module in pam.
 
 #### Examples
 
@@ -44,93 +37,55 @@ The following parameters are available in the `mkhomedir` class.
 
 Data type: `Boolean`
 
+Whether to enable or disable the oddjob-mkhomedir module in pam.
 
-
-Default value: `$mkhomedir::params::enable`
-
-##### `package_name`
-
-Data type: `String`
-
-
-
-Default value: `$mkhomedir::params::package_name`
+Default value: ``true``
 
 ##### `package_ensure`
 
 Data type: `Boolean`
 
+Whether or not to install the oddjob-mkhomedir package,
+or to remove or purge it. This should prolly be correlated
+with pam_module_name setting it to something else, if you
+don't want to installed the package.
 
+Default value: `'installed'`
 
-Default value: `$mkhomedir::params::package_ensure`
+##### `package_name`
 
-##### `pam_module_args`
+Data type: `String`
 
-Data type: `Array[String]`
+Name of the package to install.
 
-
-
-Default value: `$mkhomedir::params::pam_module_args`
+Default value: `'oddjob-mkhomedir'`
 
 ##### `pam_module_name`
 
 Data type: `String`
 
+If you just want to use the standard pam_mkhomedir.so instead
+of the default pam_oddjob_mkhomedir.so than set this value here.
+Debian only. Authconfig uses pam_oddjob_mkhomedir.so if available.
+To make use of pam_mkhomedir.so set package_ensure to "purged"
 
-
-Default value: `$mkhomedir::params::pam_module_name`
+Default value: `'pam_oddjob_mkhomedir.so'`
 
 ##### `pam_service_name`
 
 Data type: `String`
 
+The name of the pam.d/FILE to modify
+Debian only. RedHat modules uses authconfig which handles this.
 
+Default value: `'common-session'`
 
-Default value: `$mkhomedir::params::pam_service_name`
+##### `pam_module_args`
 
-### `mkhomedir::debian`
+Data type: `Array[String]`
 
-The class can install or uninstall, enable or disable pam_mkhomedir
-on RedHat family systems. If the oddjob package isnæt installed,
-If the oddjob-mkhomedir isn't installed pam_mkhomedir can still
-be enabled, default to standard pam_mkhomedir.
+Arguments to pass to the module, eg. umask=0007 or umask=0077
+Debian only. RedHat modules uses authconfig.
 
-This class is dependent on herculesteam/augeasproviders_pam
-
-#### Examples
-
-##### 
-
-```puppet
-include mkhomedir
-```
-
-### `mkhomedir::params`
-
-This class set defaults
-
-#### Examples
-
-##### 
-
-```puppet
-include mkhomedir::params
-```
-
-### `mkhomedir::redhat`
-
-The class can install or uninstall, enable or disable pam_mkhomedir
-on RedHat family systems. If the oddjob package isnæt installed,
-If the oddjob-mkhomedir isn't installed pam_mkhomedir can still
-be enabled, default to standard pam_mkhomedir.
-
-This class is dependent on yguenane/authconfig.
-
-#### Examples
-
-##### 
-
-```puppet
-include mkhomedir
-```
+Default value: `['umask=0077']`
 
