@@ -41,12 +41,6 @@ class mkhomedir (
 
 ) {
 
-  package {
-    "mkhomedir_${mkhomedir::package_name}":
-      ensure => $mkhomedir::ensure,
-      name   => $mkhomedir::package_name,
-    ;
-  }
 
   case $facts['os']['family'] {
     'RedHat': { include mkhomedir::redhat }

@@ -16,7 +16,6 @@ class mkhomedir::redhat {
   class {
     'authconfig':
       mkhomedir => $mkhomedir::enable,
-      require   => Package["mkhomedir_${mkhomedir::package_name}"],
     ;
   }
 

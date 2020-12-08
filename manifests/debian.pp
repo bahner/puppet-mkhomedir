@@ -13,6 +13,13 @@
 #   include mkhomedir
 class mkhomedir::debian {
 
+  package {
+    "mkhomedir_${mkhomedir::package_name}":
+      ensure => $mkhomedir::ensure,
+      name   => $mkhomedir::package_name,
+    ;
+  }
+
   $ensure = $mkhomedir::enable ? {
     false   => 'absent',
     default => 'present',
